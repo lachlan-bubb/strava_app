@@ -6,7 +6,10 @@ authors = ["Lachlan Bubb <lachlan_bubb@live.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "3.8.18"
+python-dotenv = "^1.0.0"
+requests = "^2.0.0"
+pandas = "2.0.3"
 
 
 [build-system]
