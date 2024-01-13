@@ -43,7 +43,7 @@ def load_access_token(load_from_env = False):
 
         # Make the GET request
         response = requests.post(url, params=params)
-        print(response.json())
+        # print(response.json())
         strava_access_token = response.json()['access_token']
 
     return strava_access_token
