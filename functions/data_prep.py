@@ -5,22 +5,51 @@ import requests
 import pandas as pd
 
 def import_data():
-    data = activites_data_pull()
+    token = load_access_token()
+    data = activites_data_pull(token)
     output = activities_data_clean(data)
     return output
 
-def activites_data_pull(): 
+def load_access_token(load_from_env = False):
+    # Set Env path
     envpath = ".env"
 
     # Load environment variables from the .env file
     load_dotenv(envpath)
 
-    # Get the Strava access token from the environment variable
-    strava_access_token = os.getenv("STRAVA_ACCESS_TOKEN")
+    if load_from_env == True: 
+        # Get the Strava access token from the environment variable
+        strava_access_token = os.getenv("STRAVA_ACCESS_TOKEN")
 
-    # Check if the access token is present
-    if not strava_access_token:
-        raise ValueError("Strava access token is not provided.")
+        # Check if the access token is present
+        if not strava_access_token:
+            raise ValueError("Strava access token is not provided.")
+    else : 
+        # Get the Strava access token from the environment variable
+        strava_client_id=os.getenv("STRAVA_CLIENT_ID")
+        strava_client_secret=os.getenv("STRAVA_CLIENT_SECRET")
+        strava_refresh_token=os.getenv("STRAVA_REFRESH_TOKEN")
+
+        # Define the API URL
+        url = "https://www.strava.com/oauth/token"
+
+        # Set up parameters
+        params = {
+            'client_id': strava_client_id,
+            'client_secret':strava_client_secret,
+            'refresh_token':strava_refresh_token,
+            'grant_type':'refresh_token'
+        }
+
+        # Make the GET request
+        response = requests.post(url, params=params)
+        print(response.json())
+        strava_access_token = response.json()['access_token']
+
+    return strava_access_token
+
+
+def activites_data_pull(strava_access_token): 
 
     # Define the API URL
     url = "https://www.strava.com/api/v3/athlete/activities"
@@ -37,7 +66,6 @@ def activites_data_pull():
     activities = pd.json_normalize(response.json())
 
     return activities
-
 
 def activities_data_clean(df):
 

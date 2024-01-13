@@ -6,22 +6,16 @@ import plotly.express as px
 
 # Import local packages
 import functions.data_prep as dp
+from app.layout import layout_define
 
-activities = dp.import_data()
-
+# Stand up app
 app = Dash(__name__)
 
-# App layout
-app.layout = html.Div(
-    [
-        html.Div(children="My Strava App"),
-        html.Hr(),
-        dash_table.DataTable(id='table',
-                                data=activities.to_dict('records'),
-                                page_size=10)    
-    ]
-)
+# create data
+activities = dp.import_data()
 
+# App layout
+app.layout = layout_define(activities)
 
 # Run the app
 if __name__ == "__main__":

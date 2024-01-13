@@ -27,6 +27,8 @@ params = {
 # Make the GET request
 response = requests.get(url, params=params)
 
+print(response.json())
+
 # Print the response text
 activities = pd.json_normalize(response.json())
 
