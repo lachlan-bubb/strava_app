@@ -3,22 +3,3 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: white;
 }
-
-#chart-container {
-  font-family: 'Arial', sans-serif;
-  width: 80%;
-  margin: auto;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.data-table {
-  font-family: 'Arial', sans-serif;
-  width: 80%;
-  margin: auto;
-  margin-top: 20px;
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
