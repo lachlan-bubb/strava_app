@@ -1,4 +1,3 @@
-
 import os
 from dotenv import load_dotenv
 import requests
@@ -20,9 +19,7 @@ if not strava_access_token:
 url = "https://www.strava.com/api/v3/athlete/activities"
 
 # Set up parameters
-params = {
-    'access_token': strava_access_token
-}
+params = {"access_token": strava_access_token}
 
 # Make the GET request
 response = requests.get(url, params=params)

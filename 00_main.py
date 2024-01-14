@@ -1,8 +1,5 @@
 # Import packages
-import dash
-from dash import Dash, html, dash_table, dcc, callback, Output, Input
-import pandas as pd
-import plotly.express as px
+from dash import Dash
 
 # Import local packages
 import functions.data_prep as dp
