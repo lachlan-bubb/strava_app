@@ -7,3 +7,10 @@ References
 - Poetry install
 - Install Postman link[https://www.postman.com/downloads/]
 
+# Project aims
+- Pull activities data
+- create training log
+- 
+
+# Spotify app
+- Pull playlist tracks - build running playlists?

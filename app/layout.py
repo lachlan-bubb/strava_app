@@ -3,16 +3,21 @@ import plotly.express as px
 
 
 def layout_define(df):
-    # Distance plot
-    column_x_counts = df["start_date"].value_counts().reset_index()
-    column_x_counts.columns = ["Unique Values", "Count"]
 
     # Creating a bar chart using Plotly Express
+    column_x_counts = df["start_date"].value_counts().reset_index()
+    column_x_counts.columns = ["Unique Values", "Count"]
     fig1 = px.bar(
         column_x_counts,
         x="Unique Values",
         y="Count",
-        title="Bar Chart of Column X Counts",
+    )
+
+    # Creating a line chart using Plotly Express
+    fig2 = px.line(
+        df,
+        x="start_date",
+        y="name",
     )
 
     page1_layout = html.Div(
@@ -23,15 +28,30 @@ def layout_define(df):
 
     page2_layout = html.Div(
         [
-            dcc.Dropdown(
-                id="column-dropdown",
-                options=[
-                    {"label": col, "value": col} for col in df.columns[1:]
-                ],  # Exclude 'Date'
-                value=df.columns[1],  # Default selected column
-                multi=False,
+            html.Div([
+                html.Label('Select Y Axis:'),
+                dcc.Dropdown(
+                    id="yaxis-dropdown",
+                    options=[
+                        {"label": col, "value": col} for col in df.columns[1:]
+                    ],  # Exclude 'Date'
+                    value=df.columns[1],  # Default selected column
+                    multi=False,
+                ),
+                ], style={'width': '48%', 'display': 'inline-block'}),
+            html.Div([
+                html.Label('Select Color:'),    
+                dcc.Dropdown(
+                    id="color-dropdown",
+                    options=[
+                        {"label": col, "value": col} for col in df.columns[1:]
+                    ],  # Exclude 'Date'
+                    value='athlete.id',  # Default selected column
+                    multi=False,
             ),
+            ], style={'width': '48%', 'display': 'inline-block'}),
             dcc.Graph(figure=fig1, id="fig1"),
+            dcc.Graph(figure=fig2, id="fig2"),
         ]
     )
 
