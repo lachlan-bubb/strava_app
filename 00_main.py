@@ -3,6 +3,7 @@ from dash import Dash
 
 # Import local packages
 import functions.data_prep as dp
+import functions.model_build as mb
 from app.layout import layout_define
 from app.callbacks import register_callbacks
 
@@ -11,12 +12,13 @@ app = Dash(__name__)
 
 # create data
 activities = dp.import_data()
+model_object = mb.model_build_main(activities)
 
 # App layout
 app.layout = layout_define(activities)
 
 # Register callbacks
-register_callbacks(app, activities)
+register_callbacks(app, activities, model_object)
 
 # Run the app
 if __name__ == "__main__":

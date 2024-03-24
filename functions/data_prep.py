@@ -55,8 +55,7 @@ def activites_data_pull(strava_access_token):
     url = "https://www.strava.com/api/v3/athlete/activities"
 
     # Set up parameters
-    params = {"access_token": strava_access_token,
-              "per_page":200}
+    params = {"access_token": strava_access_token, "per_page": 200}
 
     # Make the GET request
     response = requests.get(url, params=params)
@@ -73,5 +72,5 @@ def activities_data_clean(df):
 
     excludeColumns = ["external_id", "map.summary_polyline", "map.resource_state"]
     df.drop(columns=excludeColumns, inplace=True)
-    df = df[df["start_date"]>="2023-08-01"]
+    df = df[df["start_date"] >= "2023-08-01"]
     return df
