@@ -62,26 +62,26 @@ def layout_define(df):
 
     page3_layout = html.Div(
         [
-        html.Div(
+            html.Div(
                 [
                     html.Label("Select Distance (Miles):"),
-                    dcc.Input(id='input-box-distance', type='text', placeholder='13'),
-                    html.Div(id='output-container-distance', style={'margin-top': 20})
+                    dcc.Input(id="input-box-distance", type="text", placeholder="13"),
+                    html.Div(id="output-container-distance", style={"margin-top": 20}),
                 ],
-                style={"width": "48%", "display": "inline-block"},       
-                ),
-        html.Div(
+                style={"width": "48%", "display": "inline-block"},
+            ),
+            html.Div(
                 [
                     html.Label("Select Speed (Minutes-per-Mile):"),
-                    dcc.Input(id='input-box-speed', type='text', placeholder='8'),
-                    html.Div(id='output-container-speed', style={'margin-top': 20})
+                    dcc.Input(id="input-box-speed", type="text", placeholder="8"),
+                    html.Div(id="output-container-speed", style={"margin-top": 20}),
                 ],
-                style={"width": "48%", "display": "inline-block"},       
-                ),
-        html.Div(id='output-container-effort', style={'margin-top': 20})
+                style={"width": "48%", "display": "inline-block"},
+            ),
+            html.Div(id="output-container-effort", style={"margin-top": 20}),
         ]
     )
-    
+
     layout = html.Div(
         [
             html.Div(children="My Strava App: Summary of my Strava activities."),

@@ -4,6 +4,7 @@ import plotly.express as px
 import functions.model_build as mb
 import pandas as pd
 
+
 # Callback to update the plot based on the selected column
 def register_callbacks(app, df, model_object):
     @app.callback(
@@ -11,9 +12,7 @@ def register_callbacks(app, df, model_object):
         [Input("yaxis-dropdown", "value"), Input("color-dropdown", "value")],
     )
     def update_plot(selected_column, selected_color):
-        # print('selected_column:'+selected_column)
-        # print('selected_color:'+selected_color)
-
+        
         # Distance plot
         column_x_counts = df[selected_column].value_counts().reset_index()
         column_x_counts.columns = ["Unique Values", "Count"]
@@ -38,23 +37,25 @@ def register_callbacks(app, df, model_object):
         return fig1, fig2
 
     @app.callback(
-    [Output('output-container-distance', 'children'),Output('output-container-speed', 'children'),Output('output-container-effort', 'children')],
-    [Input('input-box-distance', 'value'),Input('input-box-speed', 'value')]
+        [
+            Output("output-container-distance", "children"),
+            Output("output-container-speed", "children"),
+            Output("output-container-effort", "children"),
+        ],
+        [Input("input-box-distance", "value"), Input("input-box-speed", "value")],
     )
-    def update_output(distance,speed):
-        print(distance)
-        print(speed)
+    def update_output(distance, speed):
 
-        def check_valid(value) :
-            bool_value = value is not None and not pd.isna(value) and value is not ''
+        def check_valid(value):
+            bool_value = value is not None and not pd.isna(value) and value is not ""
             return bool_value
-        
+
         effort = ""
-        
         if check_valid(distance) and check_valid(speed):
-            print('in loop')
-            print(distance)
-            print(speed)
             effort = mb.model_score(model_object, distance, speed)
 
-        return f'You have entered: {distance} miles', f'You have entered: {speed} minutes per mile', f'The estimated effort: {effort}'
+        return (
+            f"You have entered: {distance} miles",
+            f"You have entered: {speed} minutes per mile",
+            f"The estimated effort: {effort}",
+        )
