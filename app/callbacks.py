@@ -12,7 +12,6 @@ def register_callbacks(app, df, model_object):
         [Input("yaxis-dropdown", "value"), Input("color-dropdown", "value")],
     )
     def update_plot(selected_column, selected_color):
-        
         # Distance plot
         column_x_counts = df[selected_column].value_counts().reset_index()
         column_x_counts.columns = ["Unique Values", "Count"]
@@ -45,7 +44,6 @@ def register_callbacks(app, df, model_object):
         [Input("input-box-distance", "value"), Input("input-box-speed", "value")],
     )
     def update_output(distance, speed):
-
         def check_valid(value):
             bool_value = value is not None and not pd.isna(value) and value is not ""
             return bool_value
