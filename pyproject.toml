@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "strava-app"
+version = "0.1.0"
+description = ""
+authors = ["Lachlan Bubb <lachlan_bubb@live.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.8.18"
+python-dotenv = "^1.0.0"
+requests = "^2.0.0"
+pandas = "2.0.3"
+dash   = "^2.0.0"
+black  = "23.11.0"
+flake8 = "6.1.0"
+scikit-learn = "1.3.1"
+numpy = ">1.0"
+plotly = ">=1.0"
+xgboost = ">=1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
